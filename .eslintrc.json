@@ -1,24 +1,15 @@
 {
   "extends": [
     "next/core-web-vitals",
+    "airbnb",
     "airbnb-typescript",
-    "plugin:@typescript-eslint/recommended",
-    "prettier"
+    "prettier",
+    "plugin:react/jsx-runtime"
   ],
   "plugins": ["prettier"],
   "rules": {
     "prettier/prettier": "error",
-    "react/jsx-filename-extension": [1, { "extensions": [".tsx"] }],
-    "import/extensions": [
-      "error",
-      "ignorePackages",
-      {
-        "js": "never",
-        "jsx": "never",
-        "ts": "never",
-        "tsx": "never"
-      }
-    ]
+    "react/jsx-filename-extension": [1, { "extensions": [".tsx"] }]
   },
   "settings": {
     "import/resolver": {
