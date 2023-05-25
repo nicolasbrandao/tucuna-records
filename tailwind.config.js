@@ -7,11 +7,18 @@ module.exports = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-      },
+      colors: {
+        'midnight-blue': 'rgb(var(--color-midnight-blue) / <alpha-value>)',
+        'dark-blue': 'rgb(var(--color-dark-blue) / <alpha-value>)',
+        'deep-blue': 'rgb(var(--color-deep-blue) / <alpha-value>)',
+        'cerulean': 'rgb(var(--color-cerulean) / <alpha-value>)',
+        'sky-blue': 'rgb(var(--color-sky-blue) / <alpha-value>)',
+        'pale-mint': 'rgb(var(--color-pale-mint) / <alpha-value>)',
+        'light-blue': 'rgb(var(--color-light-blue) / <alpha-value>)',
+        'steel-blue': 'rgb(var(--color-steel-blue) / <alpha-value>)',
+        'navy': 'rgb(var(--color-navy) / <alpha-value>)',
+        'darker-navy': 'rgb(var(--color-darker-navy) / <alpha-value>)'
+      }
     },
   },
   plugins: [],
