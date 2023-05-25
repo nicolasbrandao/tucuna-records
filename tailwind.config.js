@@ -17,8 +17,8 @@ module.exports = {
         'light-blue': 'rgb(var(--color-light-blue) / <alpha-value>)',
         'steel-blue': 'rgb(var(--color-steel-blue) / <alpha-value>)',
         'navy': 'rgb(var(--color-navy) / <alpha-value>)',
-        'darker-navy': 'rgb(var(--color-darker-navy) / <alpha-value>)'
-      }
+        'darker-navy': 'rgb(var(--color-darker-navy) / <alpha-value>)',
+      },
     },
   },
   plugins: [],
