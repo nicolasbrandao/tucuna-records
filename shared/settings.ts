@@ -1,5 +1,7 @@
 type Credentials = Record<'username' | 'password', string> | undefined
 
+const baseUrl = process.env.NEXTAUTH_URL
+
 export const customCredentials = {
   name: 'Credentials',
   credentials: {
@@ -7,7 +9,7 @@ export const customCredentials = {
     password: { label: 'Password', type: 'password' },
   },
   async authorize(credentials: Credentials) {
-    const res = await fetch('http://localhost:3000/api/login', {
+    const res = await fetch(`${baseUrl}/api/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
