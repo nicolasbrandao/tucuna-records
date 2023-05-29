@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint --fix",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "postinstall": "prisma migrate dev && prisma generate"
   },
   "dependencies": {
     "@prisma/client": "4.14.1",
