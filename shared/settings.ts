@@ -1,6 +1,6 @@
-type Credentials = Record<'username' | 'password', string> | undefined
+export const baseUrl = process.env.NEXTAUTH_URL
 
-const baseUrl = process.env.NEXTAUTH_URL
+type Credentials = Record<'username' | 'password', string> | undefined
 
 export const customCredentials = {
   name: 'Credentials',
