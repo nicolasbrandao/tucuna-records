@@ -1,11 +1,10 @@
-import authOptions, { getOriginPath, makeRedirectURL } from '@/shared/auth'
+import { authOptions, getOriginPath, makeRedirectURL } from '@/shared/auth'
 import { redirect } from 'next/navigation'
 import { getServerSession } from 'next-auth'
 import AuthProvider from '../contexts/AuthProvider'
 
 export const metadata = {
-  title: 'Tucuna Records',
-  description: 'Homologue suas conquistas',
+  title: 'Tucuna Records App',
 }
 
 export default async function RootLayout({

@@ -7,7 +7,7 @@ import {
   customCredentials,
 } from './settings'
 
-const authOptions: NextAuthOptions = {
+export const authOptions: NextAuthOptions = {
   providers: [CredentialsProvider(customCredentials)],
   callbacks: {
     async jwt({ token, user }) {
@@ -24,8 +24,6 @@ const authOptions: NextAuthOptions = {
     signIn: '/login',
   },
 }
-
-export default authOptions
 
 export function getOriginPath() {
   const headerObj = headers()
