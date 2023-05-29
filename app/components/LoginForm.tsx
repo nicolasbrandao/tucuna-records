@@ -42,12 +42,17 @@ export default function LoginForm() {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
 
-    await signIn('credentials', {
-      username: state.username,
-      password: state.password,
-      redirect: true,
-      callbackUrl: '/app',
-    })
+    try {
+      const result = await signIn('credentials', {
+        username: state.username,
+        password: state.password,
+        redirect: true,
+        callbackUrl: '/app',
+      })
+      console.log('SUCCESS: ', result)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return (
