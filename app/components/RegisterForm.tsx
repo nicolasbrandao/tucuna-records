@@ -1,6 +1,8 @@
 'use client'
 
 import { FormEvent, useReducer } from 'react'
+import Image from 'next/image'
+import Logo from '../../public/logo.png'
 
 const initialState = {
   username: '',
@@ -63,14 +65,19 @@ export default function RegisterForm() {
 
   return (
     <div className="flex h-full my-auto flex-1 flex-col justify-center px-6 py-12 lg:px-8">
-      <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-        <h1 className="mx-auto w-fit text-4xl font-bold text-pale-mint">
-          {/* FIXME: insert app logo here */}
-          TUCUNA RECORDS
-        </h1>
-        <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-pale-mint">
+      <div className=" flex flex-col items-center sm:mx-auto sm:w-full sm:max-w-sm">
+        <div className="max-w-[250px] max-h-[250px] flex flex-1">
+          <Image
+            className="h-full w-full object-cover"
+            src={Logo}
+            height={500}
+            width={500}
+            alt="Logo Tucuna Records"
+          />
+        </div>
+        <h1 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-pale-mint">
           Junte-se à nossa comunidade
-        </h2>
+        </h1>
       </div>
 
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
@@ -88,11 +95,11 @@ export default function RegisterForm() {
             </label>
             <div className="mt-2">
               <input
+                className="block w-full rounded-md border-0 py-1.5 px-1 text-gray-900 shadow-sm ring-1 ring-inset ring-navy placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-deep-blue sm:text-sm sm:leading-6"
                 id="username"
                 name="username"
                 type="text"
                 required
-                className="block w-full rounded-md border-0 py-1.5 px-1 text-gray-900 shadow-sm ring-1 ring-inset ring-navy placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-deep-blue sm:text-sm sm:leading-6"
                 onChange={(e) => handleChange(e.target.id, e.target.value)}
               />
             </div>
@@ -100,18 +107,18 @@ export default function RegisterForm() {
 
           <div>
             <label
-              htmlFor="email"
               className="block text-sm font-medium leading-6 text-pale-mint"
+              htmlFor="email"
             >
               E-mail
             </label>
             <div className="mt-2">
               <input
+                className="block w-full rounded-md border-0 py-1.5 px-1 text-gray-900 shadow-sm ring-1 ring-inset ring-navy placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-deep-blue sm:text-sm sm:leading-6"
                 id="email"
                 name="email"
                 type="email"
                 required
-                className="block w-full rounded-md border-0 py-1.5 px-1 text-gray-900 shadow-sm ring-1 ring-inset ring-navy placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-deep-blue sm:text-sm sm:leading-6"
                 onChange={(e) => handleChange(e.target.id, e.target.value)}
               />
             </div>
@@ -120,19 +127,19 @@ export default function RegisterForm() {
           <div>
             <div className="flex items-center justify-between">
               <label
-                htmlFor="password"
                 className="block text-sm font-medium leading-6 text-pale-mint"
+                htmlFor="password"
               >
                 Senha
               </label>
             </div>
             <div className="mt-2">
               <input
+                className="block w-full rounded-md border-0 py-1.5 px-1 text-gray-900 shadow-sm ring-1 ring-inset ring-navy placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-deep-blue sm:text-sm sm:leading-6"
                 id="password"
                 name="password"
                 type="password"
                 required
-                className="block w-full rounded-md border-0 py-1.5 px-1 text-gray-900 shadow-sm ring-1 ring-inset ring-navy placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-deep-blue sm:text-sm sm:leading-6"
                 onChange={(e) => handleChange(e.target.id, e.target.value)}
               />
             </div>
@@ -141,19 +148,19 @@ export default function RegisterForm() {
           <div>
             <div className="flex items-center justify-between">
               <label
-                htmlFor="confirm-password"
                 className="block text-sm font-medium leading-6 text-pale-mint"
+                htmlFor="confirm-password"
               >
                 Confirmar senha
               </label>
             </div>
             <div className="mt-2">
               <input
+                className="block w-full rounded-md border-0 py-1.5 px-1 text-gray-900 shadow-sm ring-1 ring-inset ring-navy placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-deep-blue sm:text-sm sm:leading-6"
                 id="confirm-password"
                 name="confirm-password"
                 type="password"
                 required
-                className="block w-full rounded-md border-0 py-1.5 px-1 text-gray-900 shadow-sm ring-1 ring-inset ring-navy placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-deep-blue sm:text-sm sm:leading-6"
                 onChange={(e) => handleChange(e.target.id, e.target.value)}
               />
             </div>
@@ -161,8 +168,8 @@ export default function RegisterForm() {
 
           <div>
             <button
-              type="submit"
               className="flex w-full justify-center mt-20 rounded-md bg-cerulean px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-sky-blue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              type="submit"
             >
               Criar conta
             </button>
