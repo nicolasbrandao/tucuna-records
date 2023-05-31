@@ -3,6 +3,7 @@
 import { signIn } from 'next-auth/react'
 import { FormEvent, useReducer } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import Logo from '../../public/logo.png'
 
 const initialState = {
@@ -125,6 +126,12 @@ export default function LoginForm() {
             </button>
           </div>
         </form>
+        <div className="flex gap-2 items-center justify-center mt-10">
+          <span className="text-pale-mint">Não possui uma conta?</span>
+          <Link href="/registro" className="text-cerulean">
+            Registre-se
+          </Link>
+        </div>
       </div>
     </div>
   )

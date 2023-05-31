@@ -2,6 +2,7 @@
 
 import { FormEvent, useReducer } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import Logo from '../../public/logo.png'
 
 const initialState = {
@@ -168,13 +169,19 @@ export default function RegisterForm() {
 
           <div>
             <button
-              className="flex w-full justify-center mt-20 rounded-md bg-cerulean px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-sky-blue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              className="flex w-full justify-center mt-10 rounded-md bg-cerulean px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-sky-blue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               type="submit"
             >
               Criar conta
             </button>
           </div>
         </form>
+        <div className="flex gap-2 items-center justify-center mt-10">
+          <span className="text-pale-mint">Já possui uma conta?</span>
+          <Link href="/login" className="text-cerulean">
+            Conecte-se
+          </Link>
+        </div>
       </div>
     </div>
   )
