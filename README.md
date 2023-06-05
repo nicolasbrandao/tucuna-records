@@ -1,5 +1,5 @@
 # TUCUNA RECORDS
 
-## This a work in progress
+## This is a work in progress
 
-More updates soon
+More updates on this project soon
