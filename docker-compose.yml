@@ -1,0 +1,31 @@
+version: "3.8"
+
+services:
+  app:
+    build:
+      context: .
+      target: development
+    env_file: .env.postgres
+    restart: always
+    ports:
+      - "3000:3000" # app
+      - "5555:5555" # studio
+    volumes:
+      - .:/tucuna-records
+      - /tucuna-records/node_modules
+    depends_on:
+      - db
+    # command: pnpm db:migrate dev -n init
+
+  db:
+    image: postgres
+    env_file: .env.postgres
+    ports:
+      - "5432:5432"
+
+networks:
+  default:
+    name: tucuna-records
+
+volumes:
+  db:

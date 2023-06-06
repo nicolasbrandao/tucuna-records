@@ -1,5 +1,6 @@
 'use client'
 
+import { useRouter } from 'next/navigation'
 import { FormEvent, useReducer } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -10,6 +11,7 @@ const initialState = {
   email: '',
   password: '',
   confirmPassword: '',
+  error: { confirmPassword: '' },
 }
 
 type State = typeof initialState
@@ -22,6 +24,7 @@ type Action = {
 
 const actionCases = {
   updateField: 'UPDATE_FIELD',
+  addError: 'ADD_ERROR',
 }
 
 const reducer = (state: State, action: Action) => {
@@ -31,6 +34,14 @@ const reducer = (state: State, action: Action) => {
         ...state,
         [action.field]: action.value,
       }
+    case actionCases.addError:
+      return {
+        ...state,
+        error: {
+          ...state.error,
+          [action.field]: action.value,
+        },
+      }
     default:
       return state
   }
@@ -38,6 +49,7 @@ const reducer = (state: State, action: Action) => {
 
 export default function RegisterForm() {
   const [state, dispatch] = useReducer(reducer, initialState)
+  const router = useRouter()
 
   const handleChange = (field: string, value: string) => {
     dispatch({ type: actionCases.updateField, field, value })
@@ -47,10 +59,14 @@ export default function RegisterForm() {
     e.preventDefault()
 
     if (state.password !== state.confirmPassword) {
-      return new Error("Password doesn't match")
+      return dispatch({
+        type: actionCases.addError,
+        field: 'confirmPassword',
+        value: "Password doesn't match",
+      })
     }
 
-    const res = await fetch('/api/register', {
+    await fetch('/api/register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -58,10 +74,11 @@ export default function RegisterForm() {
       body: JSON.stringify({
         username: state.username,
         email: state.email,
+        password: state.password,
       }),
     })
 
-    return res.json()
+    return router.push('/')
   }
 
   return (
@@ -82,11 +99,7 @@ export default function RegisterForm() {
       </div>
 
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form
-          className="space-y-6"
-          method="POST"
-          onSubmit={(e) => handleSubmit(e)}
-        >
+        <form className="space-y-6" onSubmit={(e) => handleSubmit(e)}>
           <div>
             <label
               htmlFor="username"
@@ -150,7 +163,7 @@ export default function RegisterForm() {
             <div className="flex items-center justify-between">
               <label
                 className="block text-sm font-medium leading-6 text-pale-mint"
-                htmlFor="confirm-password"
+                htmlFor="confirmPassword"
               >
                 Confirmar senha
               </label>
@@ -158,12 +171,15 @@ export default function RegisterForm() {
             <div className="mt-2">
               <input
                 className="block w-full rounded-md border-0 py-1.5 px-1 text-gray-900 shadow-sm ring-1 ring-inset ring-navy placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-deep-blue sm:text-sm sm:leading-6"
-                id="confirm-password"
-                name="confirm-password"
+                id="confirmPassword"
+                name="confirmPassword"
                 type="password"
                 required
                 onChange={(e) => handleChange(e.target.id, e.target.value)}
               />
+              {state.error.confirmPassword && (
+                <span>{state.error.confirmPassword}</span>
+              )}
             </div>
           </div>
 
