@@ -15,7 +15,18 @@ services:
       - /tucuna-records/node_modules
     depends_on:
       - db
-    # command: pnpm db:migrate dev -n init
+  
+  migrate:
+    build:
+      context: .
+      target: development
+    env_file: .env.postgres
+    command: pnpm db:migrate dev
+    volumes:
+      - .:/app
+      - /app/node_modules
+    depends_on:
+      - db
 
   db:
     image: postgres
