@@ -1,16 +1,16 @@
 {
-    "typescript.tsdk": "node_modules/typescript/lib",
-    "typescript.enablePromptUseWorkspaceTsdk": true,
-    "sqltools.connections": [
-      {
-        "previewLimit": 50,
-        "server": "localhost",
-        "port": 5432,
-        "driver": "PostgreSQL",
-        "name": "tucuna-records",
-        "database": "tucuna-records-db",
-        "username": "tucuna",
-        "password": "my-password"
-      }
-    ]
-  }
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "sqltools.connections": [
+    {
+      "previewLimit": 50,
+      "server": "localhost",
+      "port": 5432,
+      "driver": "PostgreSQL",
+      "name": "tucuna-records",
+      "database": "tucuna-records-db",
+      "username": "tucuna",
+      "password": "my-password"
+    }
+  ]
+}
