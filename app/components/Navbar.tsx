@@ -1,10 +1,9 @@
 'use client'
 
 import Image from 'next/image'
-import { UserCircleIcon } from '@heroicons/react/24/outline'
-import { useSession } from 'next-auth/react'
 import Link from 'next/link'
-import Logo from '../../public/logo.png'
+import { User } from '@prisma/client'
+import Logo from '../../public/images/logo.png'
 import AuthProvider from '../contexts/AuthProvider'
 
 const navList = [
@@ -32,9 +31,11 @@ function NavbarList() {
   )
 }
 
-function NavbarContent() {
-  const session = useSession()
+type Props = {
+  loggedUser: User | null
+}
 
+function NavbarContent({ loggedUser }: Props) {
   return (
     <nav className="h-[60px] absolute w-full p-2 flex gap-4 justify-between items-center bg-dark-blue">
       <div className="flex gap-4">
@@ -49,24 +50,32 @@ function NavbarContent() {
         </div>
         <NavbarList />
       </div>
-      {session ? (
+      {loggedUser ? (
         <div className="flex items-center gap-2 text-pale-mint">
-          <span>{session.data?.user.username}</span>
-          <div className="flex items-center text-pale-mint h-[40px] w-[40px]">
-            <UserCircleIcon />
+          <span>{loggedUser.email}</span>
+          <div className="flex flex-1 items-center text-pale-mint h-[40px] w-[40px] border-pale-mint rounded-full border-[3px]">
+            <Image
+              src={loggedUser.image}
+              alt={loggedUser.username}
+              height={40}
+              width={40}
+              className="h-full w-full object-cover rounded-full"
+            />
           </div>
         </div>
       ) : (
-        <span>Conectar-se</span>
+        <Link className="text-pale-mint" href="/login">
+          Conectar-se
+        </Link>
       )}
     </nav>
   )
 }
 
-export default function Navbar() {
+export default function Navbar({ loggedUser }: Props) {
   return (
     <AuthProvider>
-      <NavbarContent />
+      <NavbarContent loggedUser={loggedUser} />
     </AuthProvider>
   )
 }

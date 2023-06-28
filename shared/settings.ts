@@ -1,32 +1,14 @@
 export const baseUrl = process.env.NEXTAUTH_URL
 
-type Credentials = Record<'username' | 'password', string> | undefined
-
-export const customCredentials = {
-  name: 'Credentials',
-  credentials: {
-    username: { label: 'Username', type: 'text', placeholder: 'jsmith' },
-    password: { label: 'Password', type: 'password' },
-  },
-  async authorize(credentials: Credentials) {
-    const res = await fetch(`${baseUrl}/api/login`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        username: credentials?.username,
-        password: credentials?.password,
-      }),
-    })
-
-    const user = await res.json()
-
-    if (user) {
-      return user
-    }
-
-    return null
+export const googleCredentials = {
+  clientId: process.env.GOOGLE_CLIENT_ID as string,
+  clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+  authorization: {
+    params: {
+      prompt: 'consent',
+      access_type: 'offline',
+      response_type: 'code',
+    },
   },
 }
 

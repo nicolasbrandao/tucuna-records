@@ -1,23 +1,24 @@
 import { headers } from 'next/headers'
-import CredentialsProvider from 'next-auth/providers/credentials'
-import { NextAuthOptions } from 'next-auth'
+import GoogleProvider from 'next-auth/providers/google'
+import { NextAuthOptions, User } from 'next-auth'
 import {
   NO_SESSION_REDIRECT,
   ORIGIN_URL_KEY,
-  customCredentials,
+  googleCredentials,
 } from './settings'
+// FIXME: check if this is actually a problem
+// eslint-disable-next-line import/no-cycle
+import { createUser } from './prisma'
+
+export type LoginProviders = 'google'
 
 export const authOptions: NextAuthOptions = {
-  providers: [CredentialsProvider(customCredentials)],
+  providers: [GoogleProvider(googleCredentials)],
   callbacks: {
-    async jwt({ token, user }) {
-      return { ...token, ...user }
-    },
-    async session({ session, token }) {
-      // FIXME: check if this type assertion is the only way to do this
-      // eslint-disable-next-line no-param-reassign
-      session.user = token as any
-      return session
+    async signIn(user) {
+      const loginUser = user.user as User
+      createUser(loginUser)
+      return true
     },
   },
   pages: {
