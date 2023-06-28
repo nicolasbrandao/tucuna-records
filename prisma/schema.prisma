@@ -13,9 +13,9 @@ datasource db {
 model User {
   id            String    @default(cuid()) @id
   username      String    @unique
+  name          String    
   email         String    @unique
   image         String    @default("/images/default-user.svg")
-  password      String
   role          Role      @default(USER)
   createdAt     DateTime  @default(now()) @map(name: "created_at")
   updatedAt     DateTime  @updatedAt @map(name: "updated_at")
