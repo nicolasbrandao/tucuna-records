@@ -1,9 +1,6 @@
 import { Inter } from 'next/font/google'
 import './globals.css'
-import { getServerSession } from 'next-auth'
-import { authOptions } from '@/shared/auth'
-import { fetchUserWithSession } from '@/shared/prisma'
-import Navbar from './components/Navbar'
+import Providers from './contexts/Providers'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -17,14 +14,10 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  const session = await getServerSession(authOptions)
-  const loggedUser = await fetchUserWithSession(session)
-
   return (
     <html lang="pt-BR">
       <body className={inter.className}>
-        <Navbar loggedUser={loggedUser} />
-        {children}
+        <Providers>{children}</Providers>
       </body>
     </html>
   )
