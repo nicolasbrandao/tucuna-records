@@ -1,6 +1,7 @@
 import { headers } from 'next/headers'
 import GoogleProvider from 'next-auth/providers/google'
 import { NextAuthOptions, User } from 'next-auth'
+import user from '@/dao/user.dao'
 import {
   NO_SESSION_REDIRECT,
   ORIGIN_URL_KEY,
@@ -8,21 +9,17 @@ import {
 } from './settings'
 // FIXME: check if this is actually a problem
 // eslint-disable-next-line import/no-cycle
-import { createUser } from './prisma'
 
 export type LoginProviders = 'google'
 
 export const authOptions: NextAuthOptions = {
   providers: [GoogleProvider(googleCredentials)],
   callbacks: {
-    async signIn(user) {
-      const loginUser = user.user as User
-      createUser(loginUser)
+    async signIn(signInUser) {
+      const loginUser = signInUser.user as User
+      user.createUser(loginUser)
       return true
     },
-  },
-  pages: {
-    signIn: '/login',
   },
 }
 
